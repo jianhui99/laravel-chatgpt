@@ -14,6 +14,13 @@ class ChatGptIndexController extends Controller
      */
     public function __invoke(string $id = null) : Response
     {
+        if($id) {
+            $chat = Chat::findOrFail($id);
+            return Inertia::render('Chat/ChatIndex', [
+                'chat' => $chat,
+            ]);
+        }
+
         return Inertia::render('Chat/ChatIndex');
     }
 }
